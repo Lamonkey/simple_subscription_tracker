@@ -1,11 +1,14 @@
 from flask import Flask, request, render_template
 from subscription_tracker.notion_api import retreive_databse, add_entry
+import os
 app = Flask(__name__, instance_relative_config=True)
-app.config.from_pyfile('config.py')
+# app.config.from_pyfile('config.py')
+app.config["DATABSE_LINK"] = os.getenv("DATABSE_LINK")
+app.config["NOTION_KEY"] = os.getenv("NOTION_KEY")
+app.config["NOTION_DATABASE_ID"] = os.getenv("NOTION_DATABASE_ID")
+
 DATABSE_LINK = app.config['DATABSE_LINK']
-# get NOTION_KEY from config.py
 NOTION_KEY = app.config['NOTION_KEY']
-# get NOTION_DATABASE_ID from config.py
 NOTION_DATABASE_ID = app.config['NOTION_DATABASE_ID']
 
 @app.route('/')

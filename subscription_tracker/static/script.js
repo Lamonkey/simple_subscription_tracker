@@ -1,9 +1,8 @@
-const base_url = "http://127.0.0.1:5000/"
+const base_url = window.location.href
 
-console.log("added")
 
 //log passed parameter when onclick is called
-const handleSubmission = (data) => {
+const handleSubmission = () => {
     event.preventDefault();
     
     const name = document.getElementById('name').value;
