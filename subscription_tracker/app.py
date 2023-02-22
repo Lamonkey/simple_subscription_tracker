@@ -41,10 +41,10 @@ def add():
     else:
         # add entry to database
         add_entry(response['name'], response['tag'],
-                  response['date'], float(response['price']))
+                  response['date'], float(response['price']),notion_api_key=NOTION_KEY, notion_database_id=NOTION_DATABASE_ID)
     # return response 200
     return "200"
 # Get the database
 @app.route('/get')
 def get():
-    return retreive_databse()
+    return retreive_databse(notion_api_key=NOTION_KEY, notion_databse_id=NOTION_DATABASE_ID)

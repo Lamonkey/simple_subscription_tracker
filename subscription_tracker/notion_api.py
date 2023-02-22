@@ -1,15 +1,13 @@
 import requests
 
 
-import requests
-NOTION_API_KEY = "secret_fpzxtvY93ozKaAQrSNk3SdwbwBcUEyKckNZFx5zgHOa"
-NOTION_DATABASE_ID = "884fade61b7f429e94e7c2fa030a2697"
+
 
 # retreive the database 
-def retreive_databse():
-    url = f'https://api.notion.com/v1/databases/{NOTION_DATABASE_ID}'
+def retreive_databse(notion_databse_id, notion_api_key):
+    url = f'https://api.notion.com/v1/databases/{notion_databse_id}'
     headers = {
-        'Authorization': f'Bearer {NOTION_API_KEY}',
+        'Authorization': f'Bearer {notion_api_key}',
         'Notion-Version': '2022-06-28'
     }
     response = requests.get(url, headers=headers)
@@ -17,16 +15,16 @@ def retreive_databse():
 
 
 # add a new entry to the database
-def add_entry(name, tags, date, price):
+def add_entry(name, tags, date, price, notion_api_key, notion_database_id):
     url = 'https://api.notion.com/v1/pages'
 
     headers = {
-        'Authorization': 'Bearer ' + NOTION_API_KEY,
+        'Authorization': 'Bearer ' + notion_api_key,
         'Content-Type': 'application/json',
         'Notion-Version': '2022-06-28'
     }
     data = {
-        "parent": { "database_id": NOTION_DATABASE_ID },
+        "parent": { "database_id": notion_database_id },
         "properties": {
             "Name": {
                 "title": [
